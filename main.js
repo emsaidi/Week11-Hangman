@@ -1,7 +1,8 @@
 //will contain the logic of your app. Running it in Terminal/Bash will start the game.
+var inquirer = require("inquirer");
 
 var word = require('./word.js');
-var inquirer = require("inquirer");
+var selectedWord = reqire('./game.js')
 
 var guess;
 

@@ -2,14 +2,14 @@
 
 //on class excersise
 
-function Letter(value) {
+var Letter = function Letter(value) {
 	this.value = value;
 	this.visible = false;
 }
 
 Letter.prototype.show = function() {
 	// ternary operator below
-	return.(this.visible) ? this.value : '_';
+	return (this.visible) ? this.value : '_';
 
 	//same as the line 11
 	// if (this.visible){
