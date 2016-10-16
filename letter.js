@@ -2,13 +2,21 @@
 
 //on class excersise
 
-var Letter = function Letter(value) {
+function Letter(value) {
+	//Store the character value in the Letter object
 	this.value = value;
-	this.visible = false;
+	// If the letter is a space, visiable defaults to true
+	// Otherwise visible defaults to false
+	this.visible = (value === ' ');
 }
 
-Letter.prototype.show = function() {
-	// ternary operator below
+/*
+* Returns the stored character if it is visible, or _ if not
+*/
+
+Letter.prototype.render = function() {
+	// ternary operator below, read this as:
+	// "if this. visible is true return this.value otherwise return"
 	return (this.visible) ? this.value : '_';
 
 	//same as the line 11
@@ -19,4 +27,4 @@ Letter.prototype.show = function() {
 	// }
 }
 
-exports = Letter;
+module.exports = Letter;

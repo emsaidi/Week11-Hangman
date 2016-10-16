@@ -21,3 +21,8 @@ for (i = 0; i < count; i++){
 
 }
 
+
+//test
+console.log ('score: ${game.score}');
+console.log ('Incorrect guesses: [ ${[...game.guesses].join(', ' //and some more..........')
+console.log ('Remaining guesses: ${gae.tries}');

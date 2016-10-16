@@ -32,48 +32,54 @@ var selectedWord = require('./game.js')
 
 var Letter = require('./letter.js')
 
-var Word = function Word(value) {
+function Word(value) {
 	//The word we want our user to guess
 	this.value = value;
 	//An array of Letter objects that represent our word
-	this.letters = value.split().map(function(v){
-		return new Letter(v);
-	});
+	this.letters = value
+		.split('')
+		// The parameter to the following map call is called an arr
+		// It is short had for an anonymus funcitonwith a few spe
+		// Arrow functions were added to JavaScript fair recently 
+		.map(l => Letter(l));
 }
 
-// Word.prototype.show = function() {
-// 	// takes Letters and calls .show on each one
-// 	// collectes them into a new array
-// 	// calls .join to return a string
-// 	return this.letters.map(function (v) {
-// 		return v.show();
-// 	})
-// 	.join();
-// }
+
+Word.prototype.render = function() {
+	// takes Letters and calls .show on each one
+	// collectes them into a new array
+	// calls .join to return a string
+	return this.letters
+		.map(l => l.render()) 
+	.join('');
+}
+
+//Makes every letter in the word visible
+
+Word.prototype.revel = function() {
+	this.Letters
+		.forEach(l => {l.visible = true});
+	return this;
+}
 
 // //modify any correctly guesse letter to set visible to ture and then it will return true or false depeneding if a correct letter was guessed.
-// Word.prototype.guess = function(guess) {
-// 	this.letters.map(function(l) {
-// 		if (guess === l.value) {
-// 			l.visible == true;
-// 			return true;
-// 		}
-// 		else {
-// 			return false;
-// 		}
-// 	})
-// 	.some (function(v) {
-// 		return v;
-// 	});
-// }
+Word.prototype.guess = function(guess) {
+	this.letters
+		.map(l => {
+			var match = (guess === l.value);
+			l.visible = l.visible || match;
+			return match;
+		})
+	.some (v => v);
+}
 
-// //Return true or false depending on if the workd has been completely guesssed
-// Word.prototype.finished = function() {
-// 	return [this.show() === this.value];
-// }
+//Return true or false depending on if the workd has been completely guesssed
+Word.prototype.complete = function() {
+	return this.render() === this.value;
+}
 
 word1 = new Word(selectedWord);
 
 console.log(word1);
 
-exports = Word;
+module.exports = Word;
